@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
+import com.example.amshop.fragment.SubCategoryFragment
+import com.example.amshop.model.SubCategory
 
 class MyTabLayoutAdapter(var fm: FragmentManager): FragmentPagerAdapter(fm) {
 
@@ -19,9 +21,15 @@ class MyTabLayoutAdapter(var fm: FragmentManager): FragmentPagerAdapter(fm) {
         return fragmentList[position]
     }
 
-    fun addFragment()
-    {
+    override fun getPageTitle(position: Int): CharSequence? {
+        return titleList[position]
+    }
 
+    fun addFragment(subCat: SubCategory)
+    {
+        fragmentList.add(SubCategoryFragment.newInstance(subCat.subId))
+        titleList.add(subCat.subName)
+        notifyDataSetChanged()
     }
 
 }

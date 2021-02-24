@@ -19,10 +19,11 @@ class SplashScreenActivity : AppCompatActivity() {
         var thread = Thread()
         {
             kotlin.run{
-                Thread.sleep(1000)
+                Thread.sleep(3000)
             }
-            var intent = Intent(this, CategoryListActivity::class.java)
+            var intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
+            finish()
         }.start()
     }
 }

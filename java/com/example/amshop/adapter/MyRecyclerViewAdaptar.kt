@@ -2,6 +2,7 @@ package com.example.amshop.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.amshop.R
 import com.example.amshop.activities.SubCategoryActivity
+import com.example.amshop.app.Config
 import com.example.amshop.model.Category
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.PicassoProvider
@@ -22,9 +24,9 @@ class MyRecyclerViewAdaptar(var context: Context ) : RecyclerView.Adapter<MyRecy
     inner class MyViewHolder(var view: View): RecyclerView.ViewHolder(view)
     {
         fun bind(category: Category)
-        {   var backgroundColor = if (adapterPosition % 2 == 0) "#F69ADC" else "#F69ADC"
+        {   var backgroundColor = if (adapterPosition % 2 == 0) "#A8B1B1" else "#A8B1B1"
             view.card_view_row_layout.setCardBackgroundColor(Color.parseColor(backgroundColor))
-            Picasso.get().load("https://rjtmobile.com/grocery/images/${category.catImage}").into(view.row_layout_image_view)
+            Picasso.get().load(Config.IMAGE_URL + category.catImage).into(view.row_layout_image_view)
             view.text_view_category_name.text = category.catName
             view.setOnClickListener {
                 var intent = Intent(context, SubCategoryActivity::class.java)

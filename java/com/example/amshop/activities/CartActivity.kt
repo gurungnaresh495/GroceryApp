@@ -1,5 +1,6 @@
 package com.example.amshop.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,6 +23,9 @@ class CartActivity : AppCompatActivity(), CartListAdapter.CartListButtonListener
         cart_list_recyler_view.adapter = cartListAdapter
         cart_list_recyler_view.layoutManager = LinearLayoutManager(this)
         updateSummary()
+        cart_checkout_button.setOnClickListener{
+            startActivity(Intent(this, AddressActivity::class.java))
+        }
 
     }
     private fun updateSummary()

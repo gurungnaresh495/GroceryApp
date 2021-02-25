@@ -38,6 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="50dp"
+            android:text="shanks@gmail.com"
             android:hint="Email" />
 
         <EditText
@@ -45,6 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:text="123456"
             android:hint="Password"
             android:inputType="textPassword" />
 

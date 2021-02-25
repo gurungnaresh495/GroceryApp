@@ -95,4 +95,5 @@ class ProductDetailsActivity : AppCompatActivity() {
         }
         return true
     }
+
 }

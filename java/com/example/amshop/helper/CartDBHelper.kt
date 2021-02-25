@@ -128,4 +128,13 @@ class CartDBHelper(var context: Context): SQLiteOpenHelper(context, DATABASE_NAM
         return 0
 
     }
+    fun getNumberOfProducts(): Int
+    {
+        var db = readableDatabase
+        val temp_column= arrayOf("sum($COLUMN_QUANTITY)")
+        var cursor = db.query(TABLE_NAME, temp_column, null, null, null, null, null)
+        if (cursor != null &&cursor.moveToFirst())
+            return cursor.getInt(cursor.getColumnIndex("sum($COLUMN_QUANTITY)"))
+        return 0
+    }
 }

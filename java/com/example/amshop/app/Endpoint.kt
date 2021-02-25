@@ -10,6 +10,7 @@ class Endpoint {
         private const val PRODUCT = "products/sub/"
         private const val LOGIN = "auth/login"
         private const val REGISTER = "auth/register"
+        private const val ADDRESS = "address/"
 
         fun getCategoryEndpoint() : String
         {
@@ -34,6 +35,10 @@ class Endpoint {
         fun getRegisterEndpoint(): String
         {
             return Config.BASE_URL + REGISTER
+        }
+        fun getAddressEndpoint(): String
+        {
+            return Config.BASE_URL + ADDRESS
         }
     }
 }

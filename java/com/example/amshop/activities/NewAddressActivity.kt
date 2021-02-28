@@ -3,6 +3,7 @@ package com.example.amshop.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.Response
@@ -17,10 +18,12 @@ import kotlinx.android.synthetic.main.activity_new_address.*
 import org.json.JSONObject
 import java.lang.reflect.Method
 
-class NewAddressActivity : AppCompatActivity() {
+class NewAddressActivity : BaseActivity() {
+    override val contentResource: Int = R.layout.activity_new_address
+    override var title: String = "Add New Address"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_new_address)
         init()
     }
 
@@ -46,5 +49,9 @@ class NewAddressActivity : AppCompatActivity() {
             )
             requestQueue.add(request)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        return false
     }
 }

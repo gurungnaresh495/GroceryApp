@@ -2,12 +2,14 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="20dp"
-    android:background="@color/teal_200"
+    android:background="@color/blue"
+    android:id="@+id/nav_header_layout"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:text="Welcome"
         />
     <TextView
@@ -16,12 +18,13 @@
         android:id="@+id/header_text_view_name"
         android:textStyle="bold"
         android:textSize="20dp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:text="Guest"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:id="@+id/header_text_view_email"
         android:text="Guestt email"
         />

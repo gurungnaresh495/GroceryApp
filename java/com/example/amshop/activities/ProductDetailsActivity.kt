@@ -1,6 +1,7 @@
 package com.example.amshop.activities
 
 import android.content.Intent
+import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
@@ -17,22 +18,28 @@ import kotlinx.android.synthetic.main.activity_product_details.*
 import kotlinx.android.synthetic.main.cart_list_row.view.*
 import kotlinx.android.synthetic.main.increase_text_decrease.*
 import kotlinx.android.synthetic.main.top_nav_bar.*
+import kotlin.properties.Delegates
 
 
-class ProductDetailsActivity : AppCompatActivity() {
-    var dbHelper = CartDBHelper(this)
+class ProductDetailsActivity() : BaseActivity() {
+    override var dbHelper = CartDBHelper(this)
+    override var contentResource = R.layout.activity_product_details
+    override lateinit var title: String
     override fun onCreate(savedInstanceState: Bundle?) {
+        var product = intent.getSerializableExtra(Product.PRODUCT_KEY) as Product
+        title = product.productName
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_product_details)
-        init()
+        init(product)
     }
 
-    private fun init()
+    private fun init(product: Product)
     {
-        var product = intent.getSerializableExtra(Product.PRODUCT_KEY) as Product
-        setupTopNavBar(product)
+
         details_activity_product_name.text = product.productName
         details_activity_product_price.text = "$" + product.price.toString()
+        details_activity_product_mrp.text = "$" + product.mrp.toString()
+        details_activity_product_mrp.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
+        product_details_discount_percent.text = ((product.mrp -product.price) / product.mrp * 100).toInt().toString() + "%\noff"
         details_activity_product_description.movementMethod = ScrollingMovementMethod()
         details_activity_product_description.text = product.description
         Picasso.get().load("https://rjtmobile.com/grocery/images/${product.image}").into(details_activity_image_view)
@@ -54,11 +61,13 @@ class ProductDetailsActivity : AppCompatActivity() {
             product_details_add_to_cart_text_views.visibility = View.VISIBLE
             details_activity_add_to_cart_button.visibility = View.GONE
             product_count.text = dbHelper.getQuantityOfProduct(product).toString()
+            super.updateCartCount()
         }
 
         increase_button.setOnClickListener{
             dbHelper.increaseProduct(product)
             product_count.text = dbHelper.getQuantityOfProduct(product).toString()
+            super.updateCartCount()
         }
 
         decrease_button.setOnClickListener{
@@ -69,31 +78,12 @@ class ProductDetailsActivity : AppCompatActivity() {
                 product_details_add_to_cart_text_views.visibility = View.GONE
                 details_activity_add_to_cart_button.visibility = View.VISIBLE
             }
+            super.updateCartCount()
         }
 
-    }
-    private fun setupTopNavBar(product: Product)
-    {
-        var toolbar = top_nav_bar
-        toolbar.title = product.productName
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate((R.menu.main_menu), menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId)
-        {
-            android.R.id.home -> finish()
-            R.id.settings -> Toast.makeText(this, "Settings", Toast.LENGTH_LONG).show()
-            R.id.profile -> Toast.makeText(this, "Settings", Toast.LENGTH_LONG).show()
-            R.id.cart -> startActivity(Intent(this, CartActivity::class.java))
-        }
-        return true
-    }
 
 }

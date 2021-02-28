@@ -1,52 +1,55 @@
-<RelativeLayout android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    xmlns:android="http://schemas.android.com/apk/res/android" >
-    <LinearLayout
+    android:orientation="vertical">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:padding="16dp">
 
-        <EditText
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="House Number"
-            android:id="@+id/new_address_house_no"
-            />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Street Name"
-            android:id="@+id/new_address_street_name"
-            />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="City"
-            android:id="@+id/new_address_city"
-            />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Pincode"
-            android:id="@+id/new_address_pincode"
-            />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Address type"
-            android:id="@+id/new_address_type"
-            />
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Submit"
-            android:layout_gravity="center"
-            android:id="@+id/new_address_submit_button"/>
+            <EditText
+                android:id="@+id/new_address_house_no"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="House Number" />
 
-    </LinearLayout>
+            <EditText
+                android:id="@+id/new_address_street_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Street Name" />
 
+            <EditText
+                android:id="@+id/new_address_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="City" />
 
-</RelativeLayout>
+            <EditText
+                android:id="@+id/new_address_pincode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Pincode" />
+
+            <EditText
+                android:id="@+id/new_address_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Address type" />
+
+            <Button
+                android:id="@+id/new_address_submit_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Submit" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

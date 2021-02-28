@@ -4,16 +4,18 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.View
 import com.example.amshop.R
 import com.example.amshop.model.Address
 import kotlinx.android.synthetic.main.activity_payment.*
 
-class PaymentActivity : AppCompatActivity() {
+class PaymentActivity() : BaseActivity() {
+    override val contentResource = R.layout.activity_payment
+    override var title: String = "Select Your Payment Type"
     lateinit var method: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_payment)
         init()
     }
 
@@ -45,5 +47,9 @@ class PaymentActivity : AppCompatActivity() {
     companion object
     {
         const val PAYMENT_KEY = "Payment"
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        return false
     }
 }

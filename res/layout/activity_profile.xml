@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerInParent="true"
-    android:padding="16dp"
     android:background="@drawable/profile_background"
     android:orientation="vertical">
 
@@ -50,14 +49,14 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginHorizontal="10dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Orders"
-                    android:textSize="20dp" />
+                    android:textSize="15dp" />
 
                 <TextView
                     android:id="@+id/user_profile_order_count"
@@ -65,20 +64,23 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="0"
-                    android:textSize="20dp" />
+                    android:textSize="15dp" />
             </LinearLayout>
-
+            <LinearLayout
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/blue"/>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginHorizontal="10dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Address"
-                    android:textSize="20dp" />
+                    android:textSize="15dp" />
 
                 <TextView
                     android:id="@+id/user_profile_address_count"
@@ -86,28 +88,31 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="0"
-                    android:textSize="20dp" />
+                    android:textSize="15dp" />
             </LinearLayout>
 
-
+            <LinearLayout
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/blue"/>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginHorizontal="10dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Cards"
-                    android:textSize="20dp" />
+                    android:textSize="15dp" />
 
                 <TextView
                     android:id="@+id/user_profile_cards_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:textSize="20dp"
+                    android:textSize="15dp"
                     android:text="0" />
             </LinearLayout>
         </LinearLayout>
@@ -117,7 +122,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:textStyle="bold"
         android:text="Some frequently bought items"
         android:textAlignment="center"

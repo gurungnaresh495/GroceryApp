@@ -5,14 +5,32 @@
     android:orientation="vertical"
     android:weightSum="2">
 
-    <include layout="@layout/top_nav_bar" />
-
-
-    <ImageView
-        android:id="@+id/details_activity_image_view"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        >
+
+        <ImageView
+            android:id="@+id/details_activity_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+             />
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:text="0%\noff"
+            android:padding="8dp"
+            android:textSize="15dp"
+            android:textAlignment="center"
+            android:id="@+id/product_details_discount_percent"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/white"
+            android:background="@drawable/ic_baseline_turned_in_24"
+            android:gravity="center_horizontal" />
+    </RelativeLayout>
+
 
 
     <RelativeLayout
@@ -33,10 +51,11 @@
         <TextView
             android:id="@+id/details_activity_product_description"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="226dp"
             android:layout_above="@+id/details_activity_add_to_cart_button"
             android:layout_below="@+id/details_activity_product_name"
-            android:layout_margin="5dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="18dp"
             android:fontFamily="@font/carrois_gothic"
             android:scrollbars="vertical"
             android:text="Product Name"
@@ -50,6 +69,16 @@
             android:layout_alignParentBottom="true"
             android:textColor="#4CAF50"
             android:textSize="20dp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/details_activity_product_mrp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@id/details_activity_product_price"
+            android:textColor="@color/red"
+            android:textSize="15dp"
             android:textStyle="bold" />
 
         <Button

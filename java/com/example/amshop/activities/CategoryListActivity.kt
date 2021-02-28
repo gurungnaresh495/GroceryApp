@@ -36,80 +36,22 @@ import kotlinx.android.synthetic.main.category_activity_content.*
 import kotlinx.android.synthetic.main.nav_header.view.*
 import kotlinx.android.synthetic.main.top_nav_bar.*
 
-class CategoryListActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener {
-
+class CategoryListActivity() : BaseActivity() , NavigationView.OnNavigationItemSelectedListener {
+    override val contentResource: Int = R.layout.category_activity_content
+    override var title: String = "AmShop"
     lateinit var myListAdapter: MyRecyclerViewAdaptar
-    lateinit var drawerLayout: DrawerLayout
-    lateinit var navView: NavigationView
-    var textViewCartCount: TextView? = null
-    var dbHelper = CartDBHelper(this)
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_category_list)
         init()
     }
 
     private fun init() {
-        setupTopNavBar()
         getCategories()
-
-        drawerLayout = drawer_layout
-        navView = nav_view
-
-        var headerView = navView.getHeaderView(0)
-
-        var sessionManager = SessionManager(this)
-        if (sessionManager.isLoggedIn()) {
-            headerView.header_text_view_name.text = sessionManager.getUser()
-            headerView.header_text_view_email.text = sessionManager.getUserEmail()
-        } else {
-            headerView.header_text_view_name.text = "Guest User"
-            headerView.header_text_view_email.text = "Email here"
-        }
-
         myListAdapter = MyRecyclerViewAdaptar(this)
         category_recycler_view.adapter = myListAdapter
         category_recycler_view.layoutManager = GridLayoutManager(this, 2)
-
-        navView.setNavigationItemSelectedListener(this)
-        var toggle = ActionBarDrawerToggle(this, drawerLayout, top_nav_bar,0,0)
-        drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
-    }
-
-    private fun setupTopNavBar() {
-        var toolbar = top_nav_bar
-        toolbar.title = "Home"
-        setSupportActionBar(toolbar)
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-        updateCartCount()
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate((R.menu.main_menu), menu)
-
-        var item = menu?.findItem(R.id.cart)
-        MenuItemCompat.setActionView(item, R.layout.cart_layout)
-        var view = MenuItemCompat.getActionView(item)
-
-        textViewCartCount = view.cart_icon_text_view
-        view.setOnClickListener{
-            startActivity(Intent(this, CartActivity::class.java))
-        }
-        updateCartCount()
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.settings -> Toast.makeText(this, "Settings", Toast.LENGTH_LONG).show()
-            R.id.profile -> Toast.makeText(this, "Settings", Toast.LENGTH_LONG).show()
-            R.id.cart -> startActivity(Intent(this, CartActivity::class.java))
-        }
-        return true
     }
 
     private fun getCategories() {
@@ -128,29 +70,5 @@ class CategoryListActivity : AppCompatActivity() , NavigationView.OnNavigationIt
         requestQueue.add(request)
     }
 
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.item_account -> startActivity(Intent(this, ProfileActivity::class.java))
-            R.id.item_billing -> Toast.makeText(this, "Billing", Toast.LENGTH_LONG).show()
-            R.id.item_help -> Toast.makeText(this, "Help", Toast.LENGTH_LONG).show()
-            R.id.item_order -> startActivity(Intent(this, OrderHistoryActivity::class.java))
-            R.id.item_rate_app -> Toast.makeText(this, "Rate", Toast.LENGTH_LONG).show()
-            R.id.item_refer -> Toast.makeText(this, "Refer", Toast.LENGTH_LONG).show()
-        }
-        return true
-    }
 
-    private fun updateCartCount()
-    {
-        var count = dbHelper.getNumberOfProducts()
-        if (count == 0)
-        {
-            textViewCartCount?.visibility = View.GONE
-        }
-        else
-        {
-            textViewCartCount?.visibility = View.VISIBLE
-            textViewCartCount?.text = count.toString()
-        }
-    }
 }

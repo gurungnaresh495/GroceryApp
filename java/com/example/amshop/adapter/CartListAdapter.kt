@@ -32,7 +32,7 @@ class CartListAdapter(var context: Context,var list: ArrayList<Product>): Recycl
             view.row_layout_text_view_mrp.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
             view.row_layout_text_view_price.text = "$" +product.price.toString()
             view.product_count.text = dbHelper.getQuantityOfProduct(product).toString()
-            view.row_layout_text_view_discount.text = "Discount: " +"$" +(product.mrp -product.price).toString()
+            view.row_layout_text_view_discount.text = String.format("Discount: %.2f",(product.mrp -product.price))
             Picasso.get().load(Config.IMAGE_URL + product.image).into(view.cart_list_row_image_view)
 
             view.increase_button.setOnClickListener{

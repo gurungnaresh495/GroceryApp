@@ -2,9 +2,6 @@
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <include layout="@layout/top_nav_bar"/>
-
-
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -16,6 +13,7 @@
         android:layout_height="wrap_content"
         android:text="Select your Category"
         android:textStyle="bold"
+        android:layout_gravity="center"
         android:textSize="20dp"/>
 
     <androidx.recyclerview.widget.RecyclerView

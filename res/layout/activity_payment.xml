@@ -1,50 +1,56 @@
-<RelativeLayout android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android" >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_above="@+id/payment_radio_group"
-        android:layout_height="wrap_content"
-        android:text="Select your payment method:"
-        android:layout_centerHorizontal="true"
-        android:textSize="16dp"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        />
-
-    <RadioGroup
-        android:layout_margin="20dp"
-        android:id="@+id/payment_radio_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
-
-
-        <RadioButton
-            android:layout_centerInParent="true"
-            android:layout_width="wrap_content"
-            android:textSize="20dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/payment_selection_cash"
-            android:text="Cash on Delivery"/>
-
-        <RadioButton
-           android:id="@+id/payment_selection_card"
-            android:layout_centerInParent="true"
-            android:textSize="20dp"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Card Payment"/>
+            android:layout_above="@+id/payment_radio_group"
+            android:layout_centerHorizontal="true"
+            android:text="Select your payment method:"
+            android:textSize="16dp"
 
-    </RadioGroup>
+            />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Place Order"
-        android:visibility="gone"
-        android:id="@+id/pay_now_button"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/payment_radio_group"/>
+        <RadioGroup
+            android:id="@+id/payment_radio_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="20dp">
 
-</RelativeLayout>
+
+            <RadioButton
+                android:id="@+id/payment_selection_cash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Cash on Delivery"
+                android:textSize="20dp" />
+
+            <RadioButton
+                android:id="@+id/payment_selection_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Card Payment"
+                android:textSize="20dp" />
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/pay_now_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/payment_radio_group"
+            android:layout_centerHorizontal="true"
+            android:text="Place Order"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+</LinearLayout>

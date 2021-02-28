@@ -8,7 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.amshop.R
+import com.example.amshop.activities.BaseActivity
 import com.example.amshop.activities.ProductDetailsActivity
+import com.example.amshop.activities.SubCategoryActivity
 import com.example.amshop.app.Config
 import com.example.amshop.helper.CartDBHelper
 import com.example.amshop.model.Product
@@ -22,6 +24,7 @@ import kotlinx.android.synthetic.main.product_list_row_layout.view.*
 class ProductListRecyclerViewAdapter(var context: Context) : RecyclerView.Adapter<ProductListRecyclerViewAdapter.ProductListViewHolder>() {
     private var productList = ArrayList<Product>()
     var dbHelper = CartDBHelper(context)
+    var listener: BaseActivity = context as BaseActivity
     inner class ProductListViewHolder(var view: View): RecyclerView.ViewHolder(view)
     {
         fun bind(product: Product)
@@ -32,10 +35,9 @@ class ProductListRecyclerViewAdapter(var context: Context) : RecyclerView.Adapte
                 context.startActivity(intent)
             }
 
-            view.product_list_row_layout_text_view_product_name.setText(product.productName)
-            view.product_list_row_layout_text_view_price.setText("$" + product.price.toString())
-            //var backgroundColor = if (adapterPosition % 3 == 0) "#F2BEF6" else if( adapterPosition % 3 == 1) "#FBA36A" else "#CDFAF8"
-            //view.product_list_card_view.setCardBackgroundColor(Color.parseColor(backgroundColor))
+            view.product_list_row_layout_text_view_product_name.text = product.productName
+            view.product_list_row_layout_text_view_price.text = "$" + product.price.toString()
+
             Picasso.get().load(Config.IMAGE_URL + product.image).into(view.product_list_row_layout_image_view)
 
             if (dbHelper.getQuantityOfProduct(product)> 0)
@@ -55,11 +57,13 @@ class ProductListRecyclerViewAdapter(var context: Context) : RecyclerView.Adapte
                 view.product_details_add_to_cart_text_views.visibility = View.VISIBLE
                 view.details_activity_add_to_cart_button.visibility = View.GONE
                 view.product_count.text = dbHelper.getQuantityOfProduct(product).toString()
+                listener.onClick()
             }
 
             view.increase_button.setOnClickListener{
                 dbHelper.increaseProduct(product)
                 view.product_count.text = dbHelper.getQuantityOfProduct(product).toString()
+                listener.onClick()
             }
 
             view.decrease_button.setOnClickListener{
@@ -70,6 +74,7 @@ class ProductListRecyclerViewAdapter(var context: Context) : RecyclerView.Adapte
                     view.product_details_add_to_cart_text_views.visibility = View.GONE
                     view.details_activity_add_to_cart_button.visibility = View.VISIBLE
                 }
+                listener.onClick()
             }
         }
     }
@@ -84,6 +89,11 @@ class ProductListRecyclerViewAdapter(var context: Context) : RecyclerView.Adapte
 
     override fun getItemCount(): Int {
         return productList.size
+    }
+
+    interface ProductListOnClickListener
+    {
+        fun onClick()
     }
 
     fun updateData(list: ArrayList<Product>)

@@ -143,6 +143,7 @@ class CategoryListActivity : AppCompatActivity() , NavigationView.OnNavigationIt
     private fun updateCartCount()
     {
         var count = dbHelper.getNumberOfProducts()
+        textViewCartCount?.visibility = View.GONE
         if (count == 0)
         {
             textViewCartCount?.visibility = View.GONE

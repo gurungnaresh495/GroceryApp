@@ -8,11 +8,14 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.MenuItemCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.amshop.R
+import com.example.amshop.adapter.ProductListRecyclerViewAdapter
 import com.example.amshop.helper.CartDBHelper
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_base.*
@@ -23,10 +26,12 @@ import kotlinx.android.synthetic.main.cart_layout.*
 import kotlinx.android.synthetic.main.cart_layout.view.*
 import kotlinx.android.synthetic.main.top_nav_bar.*
 
-abstract class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+abstract class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, ProductListRecyclerViewAdapter.ProductListOnClickListener {
     lateinit var drawerLayout: DrawerLayout
     lateinit var dbHelper: CartDBHelper
+    private lateinit var textViewCartCount: TextView
     abstract val contentResource : Int
+    abstract var title: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_base)
@@ -44,8 +49,12 @@ abstract class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         navView.setNavigationItemSelectedListener (this)
 
         var toolbar = top_nav_bar
-        toolbar.title = "Home"
+        toolbar.title = this.title
         setSupportActionBar(toolbar)
+
+        var toggle = ActionBarDrawerToggle(this, drawerLayout, top_nav_bar,0,0)
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -53,7 +62,7 @@ abstract class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         var item = menu?.findItem(R.id.cart)
         MenuItemCompat.setActionView(item, R.layout.cart_layout)
         var view = MenuItemCompat.getActionView(item)
-        var textViewCartCount = view.cart_icon_text_view
+        textViewCartCount = view.cart_icon_text_view
         view.setOnClickListener{
             startActivity(Intent(this, CartActivity::class.java))
         }
@@ -81,6 +90,10 @@ abstract class BaseActivity : AppCompatActivity(), NavigationView.OnNavigationIt
             R.id.item_refer -> Toast.makeText(this, "Refer", Toast.LENGTH_LONG).show()
         }
         return true
+    }
+
+    override fun onClick() {
+        textViewCartCount.text = dbHelper.getNumberOfProducts().toString()
     }
 
 }

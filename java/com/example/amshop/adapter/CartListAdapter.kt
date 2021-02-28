@@ -18,8 +18,8 @@ import kotlinx.android.synthetic.main.product_list_row_layout.view.*
 
 class CartListAdapter(var context: Context,var list: ArrayList<Product>): RecyclerView.Adapter<CartListAdapter.CartListViewHolder>() {
 
-      var subtotal = 0.00
-      var discount  = 0.00
+    var subtotal = 0.00
+    var discount  = 0.00
     var dbHelper = CartDBHelper(context)
     var listener: CartListButtonListener = context as CartActivity
 

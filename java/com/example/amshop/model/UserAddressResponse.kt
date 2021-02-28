@@ -1,5 +1,7 @@
 package com.example.amshop.model
 
+import java.io.Serializable
+
 data class UserAddressResponse(
     val count: Int,
     val data: List<Address>,
@@ -14,4 +16,9 @@ data class Address(
     val streetName: String,
     val type: String,
     val userId: String
-)
+): Serializable
+{
+    companion object{
+        const val ADDRESS_KEY = "Address"
+    }
+}

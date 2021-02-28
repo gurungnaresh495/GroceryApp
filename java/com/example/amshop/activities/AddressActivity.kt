@@ -3,6 +3,8 @@ package com.example.amshop.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.MenuItem
 import android.widget.BaseAdapter
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,13 +21,16 @@ import com.example.amshop.model.Address
 import com.example.amshop.model.UserAddressResponse
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_address.*
+import kotlin.properties.Delegates
 
-class AddressActivity : AppCompatActivity() {
+class AddressActivity() : BaseActivity() {
+    override var contentResource =R.layout.activity_address
     private lateinit var listOfAddress: ArrayList<Address>
     lateinit var listAdapter: AddressRecyclerViewAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_address)
+        //setContentView(R.layout.activity_address)
         init()
     }
 
@@ -63,4 +68,7 @@ class AddressActivity : AppCompatActivity() {
             })
         requestQueue.add(request)
     }
+
+
+
 }

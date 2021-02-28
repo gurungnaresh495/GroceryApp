@@ -3,13 +3,39 @@
     android:padding="16dp"
     xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <TextView
+    <ProgressBar
+        android:id="@+id/order_confirmation_progressbar"
+        android:layout_centerInParent="true"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        />
+    <LinearLayout
+        android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="40dp"
-        android:text="Thank you for ordering with us"
-        android:layout_centerInParent="true"
-        android:textAlignment="center"
-        android:gravity="center_horizontal" />
+        android:visibility="gone"
+        android:orientation="vertical"
+        android:id="@+id/confirmed_view">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/confirmed"/>
+
+        <TextView
+            android:textColor="@color/black"
+            android:id="@+id/order_confirmation_thank_you"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:text="Order Confirmed"
+            android:layout_centerInParent="true"
+            android:textAlignment="center"
+            android:gravity="center_horizontal" />
+
+    </LinearLayout>
+
+
 
 </RelativeLayout>

@@ -12,8 +12,7 @@ class SessionManager(context: Context) {
     private val USER_PASSWORD = "Password"
     private val USER_STATUS = "LoggedIn"
 
-    private val sharedPreference: SharedPreferences =
-        context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
+    private val sharedPreference: SharedPreferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
     private val editor: SharedPreferences.Editor = sharedPreference.edit()
 
     fun register(id: String, name: String, email: String, password:String)

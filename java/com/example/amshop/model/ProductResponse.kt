@@ -8,6 +8,11 @@ data class ProductResponse(
     val error: Boolean
 )
 
+data class SingleProductResponse(
+    val error: Boolean,
+    val data: Product
+)
+
 data class Product(
     val _id: String,
     val catId: Int,

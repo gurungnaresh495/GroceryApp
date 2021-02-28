@@ -21,12 +21,12 @@ import kotlinx.android.synthetic.main.activity_category_list.*
 import kotlinx.android.synthetic.main.activity_sub_category.*
 import kotlinx.android.synthetic.main.top_nav_bar.*
 
-class SubCategoryActivity : AppCompatActivity() {
+class SubCategoryActivity() : BaseActivity() {
 
+    override var contentResource = R.layout.activity_sub_category
     lateinit var myTabLayout: MyTabLayoutAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sub_category)
         init()
     }
 

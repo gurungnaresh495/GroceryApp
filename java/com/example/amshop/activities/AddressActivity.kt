@@ -23,8 +23,8 @@ import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_address.*
 import kotlin.properties.Delegates
 
-class AddressActivity() : BaseActivity() {
-    override var contentResource =R.layout.activity_address
+class AddressActivity: AppCompatActivity() {
+
     private lateinit var listOfAddress: ArrayList<Address>
     lateinit var listAdapter: AddressRecyclerViewAdapter
 

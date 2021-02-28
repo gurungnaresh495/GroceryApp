@@ -130,10 +130,10 @@ class CategoryListActivity : AppCompatActivity() , NavigationView.OnNavigationIt
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.item_account -> Toast.makeText(this, "Account", Toast.LENGTH_LONG).show()
+            R.id.item_account -> startActivity(Intent(this, ProfileActivity::class.java))
             R.id.item_billing -> Toast.makeText(this, "Billing", Toast.LENGTH_LONG).show()
             R.id.item_help -> Toast.makeText(this, "Help", Toast.LENGTH_LONG).show()
-            R.id.item_order -> Toast.makeText(this, "Order", Toast.LENGTH_LONG).show()
+            R.id.item_order -> startActivity(Intent(this, OrderHistoryActivity::class.java))
             R.id.item_rate_app -> Toast.makeText(this, "Rate", Toast.LENGTH_LONG).show()
             R.id.item_refer -> Toast.makeText(this, "Refer", Toast.LENGTH_LONG).show()
         }

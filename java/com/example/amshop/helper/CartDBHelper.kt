@@ -137,4 +137,30 @@ class CartDBHelper(var context: Context): SQLiteOpenHelper(context, DATABASE_NAM
             return cursor.getInt(cursor.getColumnIndex("sum($COLUMN_QUANTITY)"))
         return 0
     }
+
+    fun getPriceTotal(): Double
+    {
+        var db = readableDatabase
+        val temp_column= arrayOf("sum($COLUMN_QUANTITY * $COLUMN_PRICE)")
+        var cursor = db.query(TABLE_NAME, temp_column, null, null, null, null, null)
+        if (cursor != null &&cursor.moveToFirst())
+            return cursor.getDouble(cursor.getColumnIndex("sum($COLUMN_QUANTITY * $COLUMN_PRICE)"))
+        return 0.00
+    }
+
+    fun getDiscountTotal(): Double
+    {
+        var db = readableDatabase
+        val temp_column= arrayOf("sum($COLUMN_QUANTITY * ($COLUMN_MRP - $COLUMN_PRICE))")
+        var cursor = db.query(TABLE_NAME, temp_column, null, null, null, null, null)
+        if (cursor != null &&cursor.moveToFirst())
+            return cursor.getDouble(cursor.getColumnIndex("sum($COLUMN_QUANTITY * ($COLUMN_MRP - $COLUMN_PRICE))"))
+        return 0.00
+    }
+
+    fun emptyCart()
+    {
+        var db = writableDatabase
+        db.delete(TABLE_NAME, null, null)
+    }
 }

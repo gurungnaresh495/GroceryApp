@@ -17,12 +17,16 @@ import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_order_history.*
 import java.lang.reflect.Method
 
-class OrderHistoryActivity : AppCompatActivity() {
+class OrderHistoryActivity : BaseActivity() {
     private var orderList = ArrayList<Order>()
     private lateinit var orderListAdapter: OrdersRecyclerViewAdapter
+    override val contentResource: Int = R.layout.activity_order_history
+
+    override var title: String = "Order History"
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_order_history)
         init()
     }
 

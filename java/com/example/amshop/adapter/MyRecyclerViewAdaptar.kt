@@ -24,8 +24,7 @@ class MyRecyclerViewAdaptar(var context: Context ) : RecyclerView.Adapter<MyRecy
     inner class MyViewHolder(var view: View): RecyclerView.ViewHolder(view)
     {
         fun bind(category: Category)
-        {   var backgroundColor = if (adapterPosition % 2 == 0) "#A8B1B1" else "#A8B1B1"
-            view.card_view_row_layout.setCardBackgroundColor(Color.parseColor(backgroundColor))
+        {
             Picasso.get().load(Config.IMAGE_URL + category.catImage).into(view.row_layout_image_view)
             view.text_view_category_name.text = category.catName
             view.setOnClickListener {

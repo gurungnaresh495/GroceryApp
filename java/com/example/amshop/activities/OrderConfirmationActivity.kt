@@ -3,6 +3,7 @@ package com.example.amshop.activities
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.View
 import androidx.annotation.RequiresApi
 import com.android.volley.Request
@@ -22,13 +23,14 @@ import org.json.JSONObject
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-class OrderConfirmationActivity : AppCompatActivity() {
-    var dbHelper = CartDBHelper(this)
+class OrderConfirmationActivity : BaseActivity() {
+    override var dbHelper = CartDBHelper(this)
+    override val contentResource: Int = R.layout.activity_order_confirmation
+    override var title: String = "Order Confirmation"
     private lateinit var sessionManager : SessionManager
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_order_confirmation)
         init()
     }
 
@@ -55,5 +57,9 @@ class OrderConfirmationActivity : AppCompatActivity() {
         })
 
         requestQueue.add(request)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        return false
     }
 }

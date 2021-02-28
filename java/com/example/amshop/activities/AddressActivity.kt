@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.MenuItem
 import android.widget.BaseAdapter
 import android.widget.Toast
@@ -23,14 +24,16 @@ import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_address.*
 import kotlin.properties.Delegates
 
-class AddressActivity: AppCompatActivity() {
+class AddressActivity: BaseActivity() {
 
     private lateinit var listOfAddress: ArrayList<Address>
     lateinit var listAdapter: AddressRecyclerViewAdapter
+    override val contentResource = R.layout.activity_address
+
+    override var title = "Select Your Address"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_address)
         init()
     }
 
@@ -49,9 +52,6 @@ class AddressActivity: AppCompatActivity() {
         add_new_address_button.setOnClickListener {
             startActivity(Intent(this, NewAddressActivity::class.java))
         }
-        select_new_address.setOnClickListener {
-            startActivity(Intent(this, PaymentActivity::class.java))
-        }
     }
 
     private fun getAllAddress()
@@ -69,6 +69,8 @@ class AddressActivity: AppCompatActivity() {
         requestQueue.add(request)
     }
 
-
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        return false
+    }
 
 }

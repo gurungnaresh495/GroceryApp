@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
@@ -22,7 +23,7 @@ import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 import kotlin.properties.Delegates
 
-class ProfileActivity : AppCompatActivity() {
+class ProfileActivity : BaseActivity() {
 
     private var orderlist = ArrayList<Order>()
     private var listOfFrequentProductsId = ArrayList<String>()
@@ -30,10 +31,11 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var userId :String
     private lateinit var listAdapter : FrequentProductsRecyclerView
     private lateinit var user : UserX
+    override val contentResource: Int = R.layout.activity_profile
+    override var title: String = "Profile"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profile)
         init()
     }
 
@@ -146,5 +148,8 @@ class ProfileActivity : AppCompatActivity() {
         requestQueue.add(request)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        return false
+    }
 
 }

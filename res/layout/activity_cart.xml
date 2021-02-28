@@ -1,18 +1,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:layout_weight="10"
     android:orientation="vertical">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cart_list_recyler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:padding="16dp"
+        android:layout_height="0dp"
+        android:layout_weight="6.8"/>
 
     <LinearLayout
-        android:layout_marginVertical="16dp"
+        android:layout_marginVertical="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:padding="16dp"
+        android:layout_weight="2"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -84,7 +88,8 @@
     </LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_weight="0.7"
+        android:layout_height="0dp">
         <Button
             android:layout_alignParentBottom="true"
             android:id="@+id/cart_checkout_button"
